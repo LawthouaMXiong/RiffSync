@@ -6,7 +6,6 @@ const resolvers = {
   Query: {
     users: async () => {
       return User.find().populate('thoughts');
-      
     },
     user: async (parent, { username }) => {
       return User.findOne({ username }).populate('thoughts');
@@ -15,7 +14,16 @@ const resolvers = {
       const params = username ? { username } : {};
       return Thought.find(params).sort({ createdAt: -1 });
     },
-  };
+    thought: async (parent, { thoughtId }) => {
+      return Thought.findOne({ _id: thoughtId });
+    },
+    me: async (parent, args, context) => {
+      if (context.user) {
+        return User.findOne({ _id: context.user._id }).populate('thoughts');
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+  },
 
 
   Mutation: {
@@ -28,7 +36,7 @@ const resolvers = {
       const user = await User.findOne({ email });
 
       if (!user) {
-        throw new AuthenticationError('Account does not exist');
+        throw new AuthenticationError('No user found with this email address');
       }
 
       const correctPw = await user.isCorrectPassword(password);
@@ -63,10 +71,50 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!');
     },
+    
+    
+    
+    removeThought: async (parent, { thoughtId }, context) => {
+      if (context.user) {
+        const thought = await Thought.findOneAndDelete({
+          _id: thoughtId,
+          thoughtAuthor: context.user.username,
+        });
 
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { thoughts: thought._id } }
+        );
+
+        return thought;
+      }
+      throw new AuthenticationError('You need to be logged in!');
+    },
+    updateThought: async (_, { thoughtId, thoughtText }, context) => {
+      if (context.user) {
+        try {
+          // Find the thought by its ID
+          const thought = await Thought.findOneAndUpdate(
+            { _id: thoughtId, thoughtAuthor: context.user.username },
+            { thoughtText },
+            { new: true }
+          );
+
+          if (!thought) {
+            throw new Error('Thought not found or user is not the author');
+          }
+
+          return thought;
+        } catch (err) {
+          throw new Error(err);
+        }
+      }
+      throw new AuthenticationError('You need to be logged in to perform this action.');
+    },
   
    
-
+  
+    
   }
 };
     
