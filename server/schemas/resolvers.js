@@ -1,30 +1,29 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Thought } = require('../models');
+const { User, Instrument } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find().populate('thoughts');
+      return User.find();
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username }).populate('thoughts');
+      return User.findOne({ username });
     },
-    thoughts: async (parent, { username }) => {
-      const params = username ? { username } : {};
-      return Thought.find(params).sort({ createdAt: -1 });
+    instruments: async (parent, { username }) => {
+      const params = username ? { username } : {};      return Instrument.find(params).sort({ createdAt: -1 });
+
     },
-    thought: async (parent, { thoughtId }) => {
-      return Thought.findOne({ _id: thoughtId });
+    instrument: async (parent, { instrumentId }) => {
+      return Instrument.findOne({ _id: instrumentId });
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id }).populate('thoughts');
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError('You need to be logged in!');
     },
   },
-
 
   Mutation: {
     addUser: async (parent, { username, email, password }) => {
@@ -49,76 +48,7 @@ const resolvers = {
 
       return { token, user };
     },
-    addThought: async (parent, { thoughtText }, context) => {
-      if (context.user) {
-        const user = await User.findOne({ _id: context.user._id }).populate('thoughts');
-    
-        if (user.thoughts.length > 0) {
-          throw new AuthenticationError('Only one thought per user is allowed.');
-        }
-    
-        const thought = await Thought.create({
-          thoughtText,
-          thoughtAuthor: context.user.username,
-        });
-    
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $addToSet: { thoughts: thought._id } }
-        );
-    
-        return thought;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    
-    
-    
-    removeThought: async (parent, { thoughtId }, context) => {
-      if (context.user) {
-        const thought = await Thought.findOneAndDelete({
-          _id: thoughtId,
-          thoughtAuthor: context.user.username,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { thoughts: thought._id } }
-        );
-
-        return thought;
-      }
-      throw new AuthenticationError('You need to be logged in!');
-    },
-    updateThought: async (_, { thoughtId, thoughtText }, context) => {
-      if (context.user) {
-        try {
-          // Find the thought by its ID
-          const thought = await Thought.findOneAndUpdate(
-            { _id: thoughtId, thoughtAuthor: context.user.username },
-            { thoughtText },
-            { new: true }
-          );
-
-          if (!thought) {
-            throw new Error('Thought not found or user is not the author');
-          }
-
-          return thought;
-        } catch (err) {
-          throw new Error(err);
-        }
-      }
-      throw new AuthenticationError('You need to be logged in to perform this action.');
-    },
-  
-   
-  
-    
-  }
+  },
 };
-    
-    
-  
 
 module.exports = resolvers;
