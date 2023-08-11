@@ -1,18 +1,28 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ApolloClient, ApolloProvider, InMemoryCache } from '@apollo/client';
+import Home from './pages/Home';
+import Jammers from './pages/Jammers';
+import Profile from './pages/Profile';
+import Resources from './pages/Resources';
+import Search from './pages/Search';
 
-const client = new ApolloClient({
-  uri: '/graphql',
-  cache: new InMemoryCache(),
-});
+import Header from './components/Header'
+
+import './assets/css/styles.css';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  return (
-    <ApolloProvider client={client}>
-      <Router>
-      </Router>
-    </ApolloProvider>
+  return (       
+    <Router>
+    
+      <Header/>
+        <Routes>
+          <Route path='/' element={<Home/>} />
+          <Route path='/jammers' element={<Jammers/>} />
+          <Route path='/profile' element={<Profile/>} />
+          <Route path='/resources' element={<Resources/>} />
+          <Route path='/search' element={<Search/>} />
+        </Routes>
+        
+    </Router>
   );
 }
 
