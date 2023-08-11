@@ -48,7 +48,6 @@ const resolvers = {
 
       return { token, user };
     },
-    // Add or remove any mutations related to instruments as needed
   },
 };
 
