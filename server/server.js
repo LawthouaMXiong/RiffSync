@@ -2,13 +2,13 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-
+const app = express();
 //chat///////////////////////////////////
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const chatServer = http.createServer(app);
-const io = socketIo(server,{cors:{
+const io = socketIo(chatServer,{cors:{
   origin: 'http://localhost:4000', 
   methods: 'GET,POST',
   credentials: true,
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
   });
 });
 
-chatServer.listen(PORT, () => {
+chatServer.listen(CHATPORT, () => {
   console.log(`Server is running on port ${CHATPORT}`);
 });
 ///////////////////////////////////////////////////////
@@ -42,7 +42,7 @@ const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
-const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
