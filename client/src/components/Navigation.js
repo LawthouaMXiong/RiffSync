@@ -2,7 +2,7 @@ import { Link, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 export default function Navigation() {
-    
+
     const router = useLocation();
     return (
       <div class="navigate">
