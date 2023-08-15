@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import './Jammers.css'; // You can import the CSS for styling if needed
+
 import ChatApp from '../ChatApp'; // Import the ChatApp component
-// ... other imports and code
+
 function Jammers() {
   const [username, setUsername] = useState('');
   const [loggedIn, setLoggedIn] = useState(false);
