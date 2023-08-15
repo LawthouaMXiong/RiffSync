@@ -1,7 +1,14 @@
 export default function Home () {
-    return <div class="home">
+    return (
+        <div className='container'>
+            <div class="home">
                 <h1 className="text-3xl font-bold underline">
-                    RiffSync jammers
+                    Chat with Jammers
                 </h1>
-           </div>
+                <div className='content'>
+                here is content
+               </div>
+            </div>
+        </div>
+    )
 }

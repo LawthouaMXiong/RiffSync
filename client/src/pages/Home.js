@@ -7,7 +7,9 @@ export default function Home () {
                 <h1 className="text-3xl font-bold underline">
                     Home
                 </h1>
-               
+               <div className='content'>
+                here is content
+               </div>
         </div>
     </div>
     )     
