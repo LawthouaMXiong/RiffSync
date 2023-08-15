@@ -1,2 +1,15 @@
+body{
+    display: flex;
+    justify-content: center;
 
+}
+
+.container{
+    display: flex;
+    
+}
+
+.home{
+    justify-content: center;
+}
 
