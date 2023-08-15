@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import socket from './src/socket.js';
+import socket from './socket.js';
 
 function ChatApp({ username }) {
   const [messages, setMessages] = useState([]);

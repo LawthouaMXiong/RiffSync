@@ -3,6 +3,41 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 
+//chat///////////////////////////////////
+const http = require('http');
+const socketIo = require('socket.io');
+const cors = require('cors');
+const chatServer = http.createServer(app);
+const io = socketIo(server,{cors:{
+  origin: 'http://localhost:4000', 
+  methods: 'GET,POST',
+  credentials: true,
+}});
+
+const CHATPORT = process.env.PORT || 3000;//should this be the same port as below?
+
+app.get('/', (req, res) => {
+  res.send('Server is running.');
+});
+
+io.on('connection', (socket) => {
+  console.log('A user connected');
+
+  socket.on('sendMessage', (message) => {
+    console.log('Message received:', message);
+    io.emit('newMessage', message); 
+  });
+
+  socket.on('disconnect', () => {
+    console.log('A user disconnected');
+  });
+});
+
+chatServer.listen(PORT, () => {
+  console.log(`Server is running on port ${CHATPORT}`);
+});
+///////////////////////////////////////////////////////
+
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
