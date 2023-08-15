@@ -2,19 +2,19 @@ const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
-
+const app = express();
 //chat///////////////////////////////////
 const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const chatServer = http.createServer(app);
-const io = socketIo(server,{cors:{
+const io = socketIo(chatServer,{cors:{
   origin: 'http://localhost:4000', 
   methods: 'GET,POST',
   credentials: true,
 }});
 
-const CHATPORT = process.env.PORT || 3000;//should this be the same port as below?
+const CHATPORT =process.env.PORT || 3001;//should this be the same port as below?
 
 app.get('/', (req, res) => {
   res.send('Server is running.');
@@ -33,7 +33,7 @@ io.on('connection', (socket) => {
   });
 });
 
-chatServer.listen(PORT, () => {
+chatServer.listen(CHATPORT, () => {
   console.log(`Server is running on port ${CHATPORT}`);
 });
 ///////////////////////////////////////////////////////
@@ -41,8 +41,8 @@ chatServer.listen(PORT, () => {
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3001;
-const app = express();
+const PORT = process.env.PORT || 3002;
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
