@@ -27,23 +27,24 @@ function Jammers() {
   return (
     <div className="jammers-container">
       <header className="App-header">
-        <h1>Jammers</h1>
+        <h1>RiffSync Jammers</h1>
       </header>
+      <h3>Chat</h3>
       <div className="chat-container">
         {!loggedIn ? (
           <div className="login-container">
             <form onSubmit={handleUsernameSubmit}>
               <label>
-                Enter your username:
+                {/* Enter your username: */}
                 <input
                   type="text"
                   value={username}
                   onChange={handleUsernameChange}
                   onKeyDown={handleKeyPress}
-                  placeholder="Type your username..."
+                  placeholder="Enter your handle..."
                 />
               </label>
-              <button type="submit">Login</button>
+              {/* <button type="submit">Login</button> */}
             </form>
           </div>
         ) : (
