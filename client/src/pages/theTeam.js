@@ -22,7 +22,7 @@ const TheTeamFour = () => {
             </p>
           </div>
 
-
+          <div className='content'>        
           <div className="flex flex-wrap -m-4">
             <div className="p-4 lg:w-1/2">
               <div className="team-card h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
@@ -151,6 +151,7 @@ const TheTeamFour = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </div>

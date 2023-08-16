@@ -27,9 +27,12 @@ function Jammers() {
   return (
     <div className="container">
       <header className="home">
+      <div className="chat">
         <h1>Chat</h1>
+      </div>  
       </header>
       {/* <h3>Chat</h3> */}
+      <div className='content'>
       <div className="chat-container">
         {!loggedIn ? (
           <div className="login-container">
@@ -50,6 +53,7 @@ function Jammers() {
         ) : (
           <ChatApp username={username} />
         )}
+        </div>
       </div>
       {/* Other content of the Jammers component */}
     </div>

@@ -18,16 +18,16 @@ header {
     justify-content: center;
 }
 
-.secondary {
+/* .secondary { */
     
     /* background-color: ; */
-}
+/* } */
 
 .container {
     display: flex;
     justify-content: center;
-    height: 60vh;
-    width: 90vw;
+    /* height: 60vh;
+    width: 90vw; */
     border-color: #2A9D8F;
     border-style: solid;
     border-radius: 20px;
@@ -47,9 +47,13 @@ header {
 .content {
     display: flex;
     justify-content: center;
-    height: 50vh;
-    width: 50vw;
+    /* height: 50vh;
+    width: 50vw; */
     border-color: #E9C46A;
     border-style: solid;
     border-radius: 20px;
+}
+
+.chat {
+    position:fixed;
 }
