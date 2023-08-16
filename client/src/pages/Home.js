@@ -8,7 +8,9 @@ export default function Home () {
                     Home
                 </h1>
                <div className='content'>
-                here is content
+               <p className="subtitle lg:w-2/3 mx-auto leading-relaxed text-base">
+                Welcome to riffSync! This is where you can find other like minded musicians and chat with them to play together!
+               </p>
                </div>
         </div>
     </div>

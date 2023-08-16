@@ -3,11 +3,11 @@
 }
 
 .title {
-  color: #fff;
+  color: black;
 }
 
 .subtitle {
-  color: #ccc;
+  color: black;
 }
 
 .container {
@@ -28,6 +28,7 @@
   border-radius: 20px;
   transition: transform 0.3s ease, z-index 0.3s ease;
 }
+
 
 .team-card:hover {
   transform: scale(1.1); /* enlarges the container by 10% */
