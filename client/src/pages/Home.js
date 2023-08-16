@@ -6,7 +6,6 @@ export default function Home () {
         <div className='home'>
                 <h1 className="text-3xl font-bold underline">
                     Home
-                    RiffSync Home
                 </h1>
                <div className='content'>
                 here is content

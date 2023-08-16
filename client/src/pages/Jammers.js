@@ -1,18 +1,3 @@
-export default function Home () {
-    return (
-        <div className='container'>
-            <div class="home">
-                <h1 className="text-3xl font-bold underline">
-                    Chat with Jammers
-                </h1>
-                <div className='content'>
-                here is content
-               </div>
-            </div>
-        </div>
-    )
-}
-
 import React, { useState } from 'react';
 
 import ChatApp from '../ChatApp'; // Import the ChatApp component
@@ -40,11 +25,11 @@ function Jammers() {
   };
 
   return (
-    <div className="jammers-container">
-      <header className="App-header">
-        <h1>RiffSync Jammers</h1>
+    <div className="container">
+      <header className="home">
+        <h1>Chat</h1>
       </header>
-      <h3>Chat</h3>
+      {/* <h3>Chat</h3> */}
       <div className="chat-container">
         {!loggedIn ? (
           <div className="login-container">

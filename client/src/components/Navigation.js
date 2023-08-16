@@ -71,7 +71,13 @@ export default function Navigation() {
               </Link>
               </Button>
           
-          
+              <Button >
+              <Link to='/theTeam'
+              className={router.pathname === '/theTeam' ? 'active' : ''}
+              >
+                  The Team
+              </Link>
+              </Button>
       </ul>
    </nav> 
   </div>
