@@ -34,9 +34,7 @@ io.on('connection', (socket) => {
   });
 });
 
-chatServer.listen(CHATPORT, () => {
-  console.log(`Server is running on port ${CHATPORT}`);
-});
+
 ///////////////////////////////////////////////////////
 
 const { typeDefs, resolvers } = require('./schemas');
@@ -68,13 +66,12 @@ const startApolloServer = async (typeDefs, resolvers) => {
   server.applyMiddleware({ app });
 
   db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    chatServer.listen(CHATPORT, () => {
+      console.log(`API server running on port ${CHATPORT}!`);
+      console.log(`Use GraphQL at http://localhost:${CHATPORT}${server.graphqlPath}`);
     })
   })
 };
 
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
-
