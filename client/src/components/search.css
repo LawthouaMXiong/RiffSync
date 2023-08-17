@@ -1,81 +1,127 @@
 .home {
-    text-align: center;
-    padding-top: 20px; 
-  }
-  
-  .search-result {
-    border: 1px solid #ccc; 
-    padding: 8px;
-    cursor: pointer;
-    margin: 4px;
-    display: inline-block; 
-    transition: background-color 0.3s ease; 
-  }
-  
-  .search-result:hover {
-    background-color: #f0f0f0;
-    border: 1px solid #999; 
-  }
+  text-align: center;
+  padding-top: 20px;
+}
 
-  .search-result.selected {
-    background-color: #f0f0f0;
-    border: 2px solid #007bff; 
-  }
-  
-  .mt-4 {
-    margin-top: 16px;
-  }
-  
-  .text-2xl {
-    font-size: 1.5em;
-  }
-  
-  .text-3xl {
-    font-size: 2em; 
-  }
-  
-  .underline {
-    text-decoration: underline;
-  }
-  
-  .font-bold {
-    font-weight: bold;
-  }
-  
-  .search-button {
-    display: inline;
-    margin: 10px; 
-    padding: 10px 20px;
-    cursor: pointer;
-    background: linear-gradient(to right, #67a1d1, #37a759);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  
-  .search-button:hover {
-    background: linear-gradient(to right, #e61212, #0e0752);
-  }
-  .submit-button {
-    display: inline;
-    margin: 10px; 
-    padding: 10px 20px;
-    cursor: pointer;
-    background: linear-gradient(to right, #54575a, #cf8e02);
-    color: white;
-    border: none;
-    border-radius: 4px;
-    font-size: 1rem;
-  }
-  .submit-button:hover {
-    background-color: #0056b3;
-    background: linear-gradient(to right, #1ebe39, #a809a8);
-  }
-  
+.search-result {
+  border: 1px solid #ccc;
+  padding: 8px;
+  cursor: pointer;
+  margin: 4px;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
 
-  /* skill level box */
-  .select-skill-level {
-  width: 15%; 
-  margin: 0 auto; 
+.search-result:hover {
+  background-color: #f0f0f0;
+  border: 1px solid #999;
+}
+
+.search-result.selected {
+  background-color: #f0f0f0;
+  border: 2px solid #007bff;
+}
+
+.mt-4 {
+  margin-top: 16px;
+}
+
+.text-2xl {
+  font-size: 1.5em;
+}
+
+.text-3xl {
+  font-size: 2em;
+}
+
+.underline {
+  text-decoration: underline;
+}
+
+.font-bold {
+  font-weight: bold;
+}
+
+.search-button {
+  display: inline;
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: linear-gradient(to right, #67a1d1, #37a759);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.search-button:hover {
+  background: linear-gradient(to right, #e61212, #0e0752);
+}
+
+.submit-button {
+  display: inline;
+  margin: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  background: linear-gradient(to right, #54575a, #cf8e02);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+  background: linear-gradient(to right, #1ebe39, #a809a8);
+}
+
+
+/* skill level box */
+.select-skill-level {
+  width: 15%;
+  margin: 0 auto;
+}
+
+
+
+
+.suggestions {
+  background: #f9f9f9;
+  border: 1px solid #ccc;
+  position: absolute;
+  width: 100%;
+  z-index: 1;
+}
+
+.suggestion {
+  padding: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.suggestion:hover {
+  background-color: #f0f0f0;
+}
+
+.matched-accounts-container {
+  margin-top: 20px;
+}
+
+.matched-account {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.matched-account:hover {
+  background-color: #f0f0f0;
+}
+
+input[type="text"].border.rounded.p-2.w-full {
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  padding: 8px;
+  width: 15%;
+  
 }
