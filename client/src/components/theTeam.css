@@ -27,6 +27,7 @@
   background-color: #8f8b8b;
   border-radius: 20px;
   transition: transform 0.3s ease, z-index 0.3s ease;
+  width: 100%;
 }
 
 
@@ -64,4 +65,3 @@
     flex-basis: 100%;
   }
 }
-
