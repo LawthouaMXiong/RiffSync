@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 
 export default function Navigation() {
@@ -10,60 +10,65 @@ export default function Navigation() {
                 <ul class="navbar">
 
                     <Button variant="secondary">
-                        <Link
+                        <NavLink
                             className={router.pathname === '/' ? 'active' : ''} to='/'
+                            // className={({isActive}) => {
+                            // return (  
+                            // (isActive ? 'secondary' : 'primary')
+                            //     )
+                            // }}
                         >
                             Home
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/jammers'
+                        <NavLink to='/jammers'
                             className={router.pathname === '/jammers' ? 'active' : ''}
 
                         >
                             Jammers
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/profile'
+                        <NavLink to='/profile'
                             className={router.pathname === '/profile' ? 'active' : ''}
 
                         >
                             Profile
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/Resources'
+                        <NavLink to='/Resources'
                             className={router.pathname === '/Resources' ? 'active' : ''}
 
                         >
                             Resources
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/Search'
+                        <NavLink to='/Search'
                             className={router.pathname === '/Search' ? 'active' : ''}
 
                         >
                             Search
-                        </Link>
+                        </NavLink>
                     </Button>
 
                     <Button variant="secondary">
-  <Link 
+  <NavLink 
     to='/theTeam'
     className={router.pathname === '/theTeam' ? 'active' : ''}
   >
     The Team
-  </Link>
+  </NavLink>
 </Button>
 
 
