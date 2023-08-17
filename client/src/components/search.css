@@ -75,22 +75,21 @@
   background: linear-gradient(to right, #1ebe39, #a809a8);
 }
 
-
 /* skill level box */
 .select-skill-level {
   width: 15%;
   margin: 0 auto;
 }
 
-
-
-
 .suggestions {
   background: #f9f9f9;
-  border: 1px solid #ccc;
+  border: 1px solid #eee; /* Subtle border */
   position: absolute;
-  width: 100%;
-  z-index: 1;
+  width: 15%; /* Match the width of the input */
+  z-index: 10;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
 }
 
 .suggestion {
@@ -123,5 +122,4 @@ input[type="text"].border.rounded.p-2.w-full {
   border: 1px solid #ccc;
   padding: 8px;
   width: 15%;
-  
 }

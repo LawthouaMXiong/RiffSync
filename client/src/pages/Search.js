@@ -12,6 +12,7 @@ export default function Search() {
   const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner');
   const [matchedAccounts, setMatchedAccounts] = useState([]);
   const [searchAttempted, setSearchAttempted] = useState(false);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
 
   const handleInputChange = (event) => {
@@ -24,11 +25,13 @@ export default function Search() {
       setSuggestions([]);
       setSelectedInstrument(null);
       setSelectedSubcategory(null);
+      setShowSuggestions(false);
     } else {
       const matches = instruments
         .filter((inst) => inst.name.toLowerCase().startsWith(value.toLowerCase()))
         .map((inst) => inst.name);
       setSuggestions(matches);
+      setShowSuggestions(true);
     }
   };
 
@@ -69,6 +72,7 @@ export default function Search() {
   const handleSubmit = () => {
     if (!selectedInstrument) {
       setSearchAttempted(true);
+      setShowSuggestions(false);
       return;
     }
   
@@ -177,7 +181,7 @@ export default function Search() {
           ))}
         </div>
       ) : searchAttempted ? (
-        <p className="no-user-message">User does not exist</p>
+        <p className="no-user-message">User does not exist, yet</p>
       ) : null}
     </div>
   );
