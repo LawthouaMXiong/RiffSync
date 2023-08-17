@@ -3,6 +3,7 @@ const { ApolloServer } = require('apollo-server-express');
 const path = require('path');
 const { authMiddleware } = require('./utils/auth');
 const app = express();
+
 //chat///////////////////////////////////
 const http = require('http');
 const socketIo = require('socket.io');
@@ -14,11 +15,11 @@ const io = socketIo(chatServer,{cors:{
   credentials: true,
 }});
 
-const CHATPORT =process.env.PORT || 3001;//should this be the same port as below?
+const CHATPORT =process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
-  res.send('Server is running.');
-});
+// app.get('/', (req, res) => {
+//   res.send('Server is running.');
+// });
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -33,15 +34,13 @@ io.on('connection', (socket) => {
   });
 });
 
-chatServer.listen(CHATPORT, () => {
-  console.log(`Server is running on port ${CHATPORT}`);
-});
+
 ///////////////////////////////////////////////////////
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3002;
+// const PORT = process.env.PORT || 3001;
 
 const server = new ApolloServer({
   typeDefs,
@@ -67,13 +66,12 @@ const startApolloServer = async (typeDefs, resolvers) => {
   server.applyMiddleware({ app });
 
   db.once('open', () => {
-    app.listen(PORT, () => {
-      console.log(`API server running on port ${PORT}!`);
-      console.log(`Use GraphQL at http://localhost:${PORT}${server.graphqlPath}`);
+    chatServer.listen(CHATPORT, () => {
+      console.log(`API server running on port ${CHATPORT}!`);
+      console.log(`Use GraphQL at http://localhost:${CHATPORT}${server.graphqlPath}`);
     })
   })
 };
 
 // Call the async function to start the server
 startApolloServer(typeDefs, resolvers);
-
