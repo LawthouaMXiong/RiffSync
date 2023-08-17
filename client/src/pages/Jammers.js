@@ -26,15 +26,12 @@ function Jammers() {
 
   return (
     
-    <div className="container">
-        
-      <header className="home">
-      <div>
+    <div className="container"> 
+      <div className="home">
       <h1 className="text-3xl font-bold underline">
                     Chat with other Jammers
     </h1>
-      </div> 
-      </header>
+      </div>
       {/* <h3>Chat</h3> */}
       <div className='content'>
       <div className="home-team-card h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
