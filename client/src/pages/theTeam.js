@@ -35,7 +35,7 @@ const TheTeamFour = () => {
                   <h2 className="title-font font-medium text-lg text-black tracking-widest">
                     Lawthoua
                   </h2>
-                  <h3 className="mb-3">Designer/Developer</h3>
+                  <h3 className="mb-3">Designer</h3>
                   <p className="mb-4">
                     Lawthoua Xiong
                   </p>
@@ -67,7 +67,7 @@ const TheTeamFour = () => {
                   <h2 className="title-font font-medium text-lg text-gray-900">
                     Joe
                   </h2>
-                  <h3 className="text-gray-700 mb-3">Designer/Developer</h3>
+                  <h3 className="text-gray-700 mb-3">Designer</h3>
                   <p className="mb-4 ">
                     Joe Rorem
                   </p>
@@ -99,14 +99,14 @@ const TheTeamFour = () => {
                   <h2 className="title-font font-medium text-lg text-gray-900">
                     James
                   </h2>
-                  <h3 className="mb-3">Designer/Developer</h3>
+                  <h3 className="mb-3">Designer</h3>
                   <p className="mb-4">
                     James Heinecke
                   </p>
                   <span className="inline-flex items-center">
                     <a
                       className="links github-link flex"
-                      href="https://github.com/">
+                      href="https://github.com/jlheinecke">
                       <img src={Github} alt="Github" />
                     </a>
                     <a
@@ -131,7 +131,7 @@ const TheTeamFour = () => {
                   <h2 className="title-font font-medium text-lg text-gray-900">
                     Peng
                   </h2>
-                  <h3 className="mb-3">Designer/Developer</h3>
+                  <h3 className="mb-3">Designer</h3>
                   <p className="mb-4">
                   Peng Vang
                   </p>

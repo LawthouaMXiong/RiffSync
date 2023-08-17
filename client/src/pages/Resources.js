@@ -1,18 +1,34 @@
-export default function Home () {
+import React, { useState } from 'react';
+
+import ErrorMessage from '../components/resources/ErrorMessage'
+import ResultsContainer from '../components/resources/ResultsContainer'
+import SearchForm from '../components/resources/SearchForm'
+
+
+
+const Resources = () => {
+    const [searchResults, setSearchResults] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const myStyle = {
+        color: "white",
+        backgroundColor: "DodgerBlue",
+        padding: "10px",
+        fontFamily: "Arial",
+        textAlign: "center"
+    };
+
     return (
-        <div className='container'>
-            <div class="home">
-                <h1 className="text-3xl font-bold underline">
-                    Search Wikipedia
-                </h1>
-                <div className='content'>
-                <div className="home-team-card h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
-                <p className="subtitle lg:w-2/3 mx-auto leading-relaxed text-base">
-                here is content
-                </p>
+        <>
+            <main>
+                <div>
+                    <h1 style={myStyle}>RiffSync Music Resources</h1>
                 </div>
-               </div>
-           </div>
-        </div>   
+                <SearchForm setErrorMessage={setErrorMessage} setSearchResults={setSearchResults} />
+                {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : <ResultsContainer searchResults={searchResults} />}
+            </main>
+        </>
     )
 }
+
+export default Resources;

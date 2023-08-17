@@ -1,0 +1,19 @@
+{
+    "instruments": [
+      "Guitar",
+      "Piano",
+      "Violin",
+      "Flute",
+      "Drums",
+      "Bass",
+      "Saxophone"
+    ],
+    "genres": [
+      "Rock",
+      "Jazz",
+      "Classical",
+      "Pop",
+      "Hip-hop",
+      "Blues"
+    ]
+  }
