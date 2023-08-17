@@ -90,5 +90,26 @@ header {
 }
 
 .active {
-    background-color: black;
+    border-color: #E9C46A;
+    border-style: solid;
+    border-radius: 10px;
+}
+
+.resources-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    border-color: #2A9D8F;
+    border-style: solid;
+    border-radius: 20px;
+}
+
+.resources-content {
+    display: flex;
+    justify-content: center;
+    
+    border-color: #E9C46A;
+    border-style: solid;
+    border-radius: 20px;
 }
