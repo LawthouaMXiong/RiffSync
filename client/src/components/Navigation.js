@@ -38,7 +38,7 @@ export default function Navigation() {
                             className={router.pathname === '/jammers' ? 'active' : ''}
 
                         >
-                            Jammers
+                            Chat
                         </NavLink>
                     </Button>
 

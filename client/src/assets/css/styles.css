@@ -27,8 +27,8 @@ header {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    height: 90vh;
-    width: 80vw;
+    /* height: 90vh;
+    width: 80vw; */
     border-color: #2A9D8F;
     border-style: solid;
     border-radius: 20px;
@@ -48,8 +48,8 @@ header {
 .content {
     display: flex;
     justify-content: center;
-    height: 40vh;
-    width: 50vw;
+    /* height: 40vh;
+    width: 50vw; */
     border-color: #E9C46A;
     border-style: solid;
     border-radius: 20px;
