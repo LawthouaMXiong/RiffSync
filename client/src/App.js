@@ -12,7 +12,7 @@ import './assets/css/styles.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
-  return (       
+  return (
     <Router>
     
       <Header/>
