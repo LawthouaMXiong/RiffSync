@@ -14,7 +14,6 @@ export default function Search() {
   const [searchAttempted, setSearchAttempted] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
 
-
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
@@ -35,20 +34,19 @@ export default function Search() {
     }
   };
 
-
   const handleSearchSubmit = () => {
     setSearchAttempted(true);
+
     if (searchTerm) {
       const instrument = instruments.find((instrument) => instrument.name.toLowerCase() === searchTerm.toLowerCase());
       setSelectedInstrument(instrument);
       setSelectedSubcategory(null);
       setSelectedGenre(null);
     }
+
+    setShowSuggestions(false);
     handleSubmit();
-
   };
-
-
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -75,23 +73,21 @@ export default function Search() {
       setShowSuggestions(false);
       return;
     }
-  
+
     const matches = fakeAccounts.filter((account) => {
       return account.instrument === selectedInstrument.name &&
         (!selectedSubcategory || account.subcategory === selectedSubcategory) &&
         (!selectedGenre || account.genre === selectedGenre) &&
         (!selectedSkillLevel || account.skillLevel === selectedSkillLevel);
     });
-  
+
     setMatchedAccounts(matches);
     setSearchAttempted(true);
   };
 
-
-  const genresForSelectedInstrument =
-    selectedInstrument && selectedSubcategory && selectedInstrument.genres[selectedSubcategory]
-      ? selectedInstrument.genres[selectedSubcategory]
-      : []
+  const genresForSelectedInstrument = selectedInstrument && selectedSubcategory && selectedInstrument.genres[selectedSubcategory]
+    ? selectedInstrument.genres[selectedSubcategory]
+    : []
 
   return (
     <div className="home">
@@ -104,7 +100,7 @@ export default function Search() {
         onKeyPress={handleKeyPress}
         className="border rounded p-2 w-full"
       />
-      {suggestions.length > 0 && (
+      {suggestions.length > 0 && showSuggestions && (
         <div className="suggestions">
           {suggestions.map((suggestion, index) => (
             <div
@@ -169,21 +165,20 @@ export default function Search() {
           Submit
         </button>
       )}
-      { matchedAccounts.length > 0 ? (
-  <div className="matched-accounts-container">
-    {matchedAccounts.map((account, index) => (
-      <div key={index} className="matched-account">
+      {matchedAccounts.length > 0 ? (
+        <div className="matched-accounts-container">
+          {matchedAccounts.map((account, index) => (
+            <div key={index} className="matched-account">
               <p>Name: {account.name}</p>
               <p>Instrument: {account.instrument}</p>
               <p>Subcategory: {account.subcategory}</p>
               <p>Skill Level: {account.skillLevel}</p>
-              </div>
+            </div>
           ))}
         </div>
       ) : searchAttempted ? (
-        <p className="no-user-message">User does not exist, yet</p>
+        <p className="no-user-message">User does not exist, yet.</p>
       ) : null}
     </div>
   );
 };
-
