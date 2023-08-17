@@ -1,3 +1,62 @@
+// import React, { useState, useEffect } from 'react';
+// import socket from './socket.js';
+
+// function ChatApp({ username }) {
+//   const [messages, setMessages] = useState([]);
+//   const [inputMessage, setInputMessage] = useState('');
+
+//   useEffect(() => {
+//     const handleMessage = (message) => {
+//       setMessages((prevMessages) => [...prevMessages, message.text]);
+//     };
+
+//     socket.on('newMessage', handleMessage);
+
+//     return () => {
+//       socket.off('newMessage', handleMessage);
+//     };
+//   }, []);
+
+//   const handleSendMessage = () => {
+//     if (inputMessage.trim() !== '') {
+//       const formattedMessage = { text: `${username}: ${inputMessage}` };
+//       socket.emit('sendMessage', formattedMessage);
+//       setInputMessage('');
+//     }
+//   };
+
+//   return (
+//     <div className="chat-container">
+//       <h2>Welcome, {username}!</h2>
+//       <div className="input-container">
+//         <input
+//           type="text"
+//           value={inputMessage}
+//           onChange={(e) => setInputMessage(e.target.value)}
+//           onKeyDown={(e) => {
+//             if (e.key === 'Enter') {
+//               handleSendMessage();
+//             }
+//           }}
+//           placeholder="Type a message..."
+//         />
+//         <button onClick={handleSendMessage}>Send</button>
+//       </div>
+//       <div className="message-list">
+//         {messages.map((message, index) => (
+//           <div key={index}>
+//             <span className={message.startsWith(username) ? 'self' : 'other'}>
+//               {message}
+//             </span>
+//           </div>
+//         )).reverse()}
+//       </div>
+//     </div>
+//   );
+// }
+
+// export default ChatApp;
+
 import React, { useState, useEffect } from 'react';
 import socket from './socket.js';
 
@@ -5,7 +64,13 @@ function ChatApp({ username }) {
   const [messages, setMessages] = useState([]);
   const [inputMessage, setInputMessage] = useState('');
 
+  // Load chat conversation from localStorage on component mount
   useEffect(() => {
+    const storedMessages = localStorage.getItem('chatMessages');
+    if (storedMessages) {
+      setMessages(JSON.parse(storedMessages));
+    }
+
     const handleMessage = (message) => {
       setMessages((prevMessages) => [...prevMessages, message.text]);
     };
@@ -16,6 +81,11 @@ function ChatApp({ username }) {
       socket.off('newMessage', handleMessage);
     };
   }, []);
+
+  useEffect(() => {
+    // Store chat conversation in localStorage whenever it changes
+    localStorage.setItem('chatMessages', JSON.stringify(messages));
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (inputMessage.trim() !== '') {
@@ -56,3 +126,4 @@ function ChatApp({ username }) {
 }
 
 export default ChatApp;
+
