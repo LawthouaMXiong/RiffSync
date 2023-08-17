@@ -9,17 +9,15 @@ const http = require('http');
 const socketIo = require('socket.io');
 const cors = require('cors');
 const chatServer = http.createServer(app);
-const io = socketIo(chatServer,{cors:{
-  origin: 'http://localhost:4000', 
-  methods: 'GET,POST',
-  credentials: true,
-}});
+const io = socketIo(chatServer);
+
+// const io = socketIo(chatServer,{cors:{
+//   origin: 'http://localhost:4000', 
+//   methods: 'GET,POST',
+//   credentials: true,
+// }});
 
 const CHATPORT =process.env.PORT || 3001;
-
-// app.get('/', (req, res) => {
-//   res.send('Server is running.');
-// });
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -34,13 +32,10 @@ io.on('connection', (socket) => {
   });
 });
 
-
 ///////////////////////////////////////////////////////
 
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
-
-// const PORT = process.env.PORT || 3001;
 
 const server = new ApolloServer({
   typeDefs,
