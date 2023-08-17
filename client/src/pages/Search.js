@@ -11,35 +11,37 @@ export default function Search() {
   const [selectedGenre, setSelectedGenre] = useState(null);
   const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner');
   const [matchedAccounts, setMatchedAccounts] = useState([]);
+  const [searchAttempted, setSearchAttempted] = useState(false);
 
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
+    setSearchAttempted(false);
 
     if (value !== '') {
       const matches = instruments
         .filter((inst) => inst.name.toLowerCase().startsWith(value.toLowerCase()))
         .map((inst) => inst.name);
-
       setSuggestions(matches);
     } else {
       setSuggestions([]);
-    setSelectedInstrument(null);
-    setSelectedSubcategory(null);
-    setSelectedGenre(null);
-    setMatchedAccounts([]);
+      setSelectedInstrument(null);
+      setSelectedSubcategory(null);
     }
   };
 
 
   const handleSearchSubmit = () => {
+    setSearchAttempted(true);
     if (searchTerm) {
       const instrument = instruments.find((instrument) => instrument.name.toLowerCase() === searchTerm.toLowerCase());
       setSelectedInstrument(instrument);
       setSelectedSubcategory(null);
       setSelectedGenre(null);
     }
+    handleSubmit();
+
   };
 
 
@@ -164,20 +166,20 @@ export default function Search() {
           Submit
         </button>
       )}
-      {matchedAccounts.length > 0 ? (
-        <div className="matched-accounts-container">
-          {matchedAccounts.map((account, index) => (
-            <div key={index} className="matched-account">
+      { matchedAccounts.length > 0 ? (
+  <div className="matched-accounts-container">
+    {matchedAccounts.map((account, index) => (
+      <div key={index} className="matched-account">
               <p>Name: {account.name}</p>
               <p>Instrument: {account.instrument}</p>
               <p>Subcategory: {account.subcategory}</p>
               <p>Skill Level: {account.skillLevel}</p>
-            </div>
+              </div>
           ))}
         </div>
-      ) : (
-        <p>user does not, yet</p>
-      )}
+      ) : searchAttempted ? (
+        <p className="no-user-message">User does not exist</p>
+      ) : null}
     </div>
   );
 };
