@@ -16,17 +16,19 @@ export default function Search() {
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-  
+
     if (value !== '') {
       const matches = instruments
         .filter((inst) => inst.name.toLowerCase().startsWith(value.toLowerCase()))
         .map((inst) => inst.name);
-  
+
       setSuggestions(matches);
     } else {
       setSuggestions([]);
-      setSelectedInstrument(null);
-      setSelectedSubcategory(null);
+    setSelectedInstrument(null);
+    setSelectedSubcategory(null);
+    setSelectedGenre(null);
+    setMatchedAccounts([]);
     }
   };
 
@@ -69,14 +71,14 @@ export default function Search() {
       selectedGenre,
       selectedSkillLevel,
     };
-  
+
     const matches = fakeAccounts.filter((account) => {
       return account.instrument === selectedInstrument.name &&
         (!selectedSubcategory || account.subcategory === selectedSubcategory) &&
         (!selectedGenre || account.genre === selectedGenre) &&
         (!selectedSkillLevel || account.skillLevel === selectedSkillLevel);
     });
-  
+
     setMatchedAccounts(matches);
   };
 
@@ -97,23 +99,23 @@ export default function Search() {
         onKeyPress={handleKeyPress}
         className="border rounded p-2 w-full"
       />
-      { suggestions.length > 0 && (
-  <div className="suggestions">
-    { suggestions.map((suggestion, index) => (
-      <div
-        key={index}
-        onClick={() => {
-          setSearchTerm(suggestion);
-          setSelectedInstrument(instruments.find((inst) => inst.name === suggestion));
-          setSuggestions([]);
-        }}
-        className="suggestion"
-      >
-        {suggestion}
-      </div>
-    ))}
-  </div>
-)}
+      {suggestions.length > 0 && (
+        <div className="suggestions">
+          {suggestions.map((suggestion, index) => (
+            <div
+              key={index}
+              onClick={() => {
+                setSearchTerm(suggestion);
+                setSelectedInstrument(instruments.find((inst) => inst.name === suggestion));
+                setSuggestions([]);
+              }}
+              className="suggestion"
+            >
+              {suggestion}
+            </div>
+          ))}
+        </div>
+      )}
       <button onClick={handleSearchSubmit} className="search-button">
         Search
       </button>
@@ -157,26 +159,26 @@ export default function Search() {
           </div>
         </div>
       )}
-     {selectedInstrument && (
+      {selectedInstrument && (
         <button onClick={handleSubmit} className="submit-button">
           Submit
         </button>
       )}
       {matchedAccounts.length > 0 ? (
-  <div className="matched-accounts-container">
-    {matchedAccounts.map((account, index) => (
-      <div key={index} className="matched-account">
-        <p>Name: {account.name}</p>
-        <p>Instrument: {account.instrument}</p>
-        <p>Subcategory: {account.subcategory}</p>
-        <p>Skill Level: {account.skillLevel}</p>
-      </div>
-    ))}
-  </div>
-) : (
-  <p>No users found.</p>
-)}
+        <div className="matched-accounts-container">
+          {matchedAccounts.map((account, index) => (
+            <div key={index} className="matched-account">
+              <p>Name: {account.name}</p>
+              <p>Instrument: {account.instrument}</p>
+              <p>Subcategory: {account.subcategory}</p>
+              <p>Skill Level: {account.skillLevel}</p>
+            </div>
+          ))}
+        </div>
+      ) : (
+        <p>user does not, yet</p>
+      )}
     </div>
-    );
-  };
+  );
+};
 
