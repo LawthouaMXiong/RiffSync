@@ -51,20 +51,6 @@ function ChatApp({ username }) {
           </div>
         )).reverse()}
       </div>
-      {/* <div className="input-container">
-        <input
-          type="text"
-          value={inputMessage}
-          onChange={(e) => setInputMessage(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter') {
-              handleSendMessage();
-            }
-          }}
-          placeholder="Type a message..."
-        />
-        <button onClick={handleSendMessage}>Send</button>
-      </div> */}
     </div>
   );
 }
