@@ -3,7 +3,7 @@
 }
 
 .title {
-  color: #fff;
+  color: black;
 }
 
 .subtitle {
@@ -29,6 +29,7 @@
   transition: transform 0.3s ease, z-index 0.3s ease;
   width: 100%;
 }
+
 
 .team-card:hover {
   transform: scale(1.1);

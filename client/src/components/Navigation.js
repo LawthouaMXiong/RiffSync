@@ -1,70 +1,85 @@
-import { Link, useLocation } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
 
 export default function Navigation() {
 
     const router = useLocation();
     return (
+    //     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    //     <Navbar bg="dark" data-bs-theme="dark">
+    //     <Container>
+    //       <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+    //       <Nav className="me-auto">
+    //         <Nav.Link href="#home">Home</Nav.Link>
+    //         <Nav.Link href="#features">Features</Nav.Link>
+    //         <Nav.Link href="#pricing">Pricing</Nav.Link>
+    //       </Nav>
+    //     </Container>
+    //   </Navbar>
+    //   </link>
         <div class="navigate">
             <nav>
                 <ul class="navbar">
 
                     <Button variant="secondary">
-                        <Link
-                            className={router.pathname === '/' ? 'active' : ''} to='/'
+                        <NavLink to='/' style={{ textDecoration: 'none' }}
+                            className={router.pathname === '/' ? 'active' : ''}
                         >
                             Home
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/jammers'
+                        <NavLink to='/jammers' style={{ textDecoration: 'none' }}
                             className={router.pathname === '/jammers' ? 'active' : ''}
 
                         >
-                            Jammers
-                        </Link>
+                            Chat
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/profile'
+                        <NavLink to='/profile' style={{ textDecoration: 'none' }}
                             className={router.pathname === '/profile' ? 'active' : ''}
 
                         >
                             Profile
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/Resources'
+                        <NavLink to='/Resources' style={{ textDecoration: 'none', }}
                             className={router.pathname === '/Resources' ? 'active' : ''}
 
                         >
                             Resources
-                        </Link>
+                        </NavLink>
                     </Button>
 
 
                     <Button variant="secondary">
-                        <Link to='/Search'
+                        <NavLink to='/Search' style={{ textDecoration: 'none' }}
                             className={router.pathname === '/Search' ? 'active' : ''}
 
                         >
                             Search
-                        </Link>
+                        </NavLink>
                     </Button>
 
                     <Button variant="secondary">
-  <Link 
-    to='/theTeam'
-    className={router.pathname === '/theTeam' ? 'active' : ''}
-  >
-    The Team
-  </Link>
-</Button>
+                        <NavLink
+                            to='/theTeam' style={{ textDecoration: 'none' }}
+                            className={router.pathname === '/theTeam' ? 'active' : ''}
+                        >
+                            The Team
+                        </NavLink>
+                    </Button>
 
 
                 </ul>

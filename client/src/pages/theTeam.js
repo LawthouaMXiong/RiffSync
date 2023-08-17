@@ -12,7 +12,7 @@ const TheTeamFour = () => {
   return (
     <div id="theTeamSection" className="bg-[#4d3ff5]">
       <section>
-        <div className="container px-5 py-24 mx-auto">
+        <div className="team-container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h1 className="title text-4xl font-bold title-font mb-10">
               The Team
@@ -22,7 +22,7 @@ const TheTeamFour = () => {
             </p>
           </div>
 
-
+        <div className='team-content flex-wrap'>        
           <div className="flex flex-wrap -m-4">
             <div className="p-4 lg:w-1/2">
               <div className="team-card h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
@@ -151,6 +151,7 @@ const TheTeamFour = () => {
               </div>
             </div>
           </div>
+        </div>
         </div>
       </section>
     </div>

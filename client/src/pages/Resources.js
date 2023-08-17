@@ -20,13 +20,21 @@ const Resources = () => {
 
     return (
         <>
-            <main>
-                <div>
-                    <h1 style={myStyle}>RiffSync Music Resources</h1>
+
+            <div className='resources-container'>
+                <div className='home'>
+                    <h1 className="text-3xl font-bold underline">
+                        RiffSync Music Resources
+                    </h1>
+
+                    
+                        <SearchForm setErrorMessage={setErrorMessage} setSearchResults={setSearchResults} />
+                        <div className='resources-content'>
+                        {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : <ResultsContainer searchResults={searchResults} />}
+                    </div>
                 </div>
-                <SearchForm setErrorMessage={setErrorMessage} setSearchResults={setSearchResults} />
-                {errorMessage ? <ErrorMessage errorMessage={errorMessage} /> : <ResultsContainer searchResults={searchResults} />}
-            </main>
+            </div>
+
         </>
     )
 }

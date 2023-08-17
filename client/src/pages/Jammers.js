@@ -25,11 +25,16 @@ function Jammers() {
   };
 
   return (
-    <div className="jammers-container">
-      <header className="App-header">
-        <h1>RiffSync Jammers</h1>
-      </header>
-      <h3>Chat</h3>
+    
+    <div className="container"> 
+      <div className="home">
+      <h1 className="text-3xl font-bold underline">
+                    Chat with other Jammers
+    </h1>
+      </div>
+      {/* <h3>Chat</h3> */}
+      <div className='content'>
+      <div className="home-team-card h-full flex sm:flex-row flex-col items-center sm:justify-start justify-center text-center sm:text-left">
       <div className="chat-container">
         {!loggedIn ? (
           <div className="login-container">
@@ -50,8 +55,10 @@ function Jammers() {
         ) : (
           <ChatApp username={username} />
         )}
+        </div>
       </div>
       {/* Other content of the Jammers component */}
+    </div>
     </div>
   );
 }
