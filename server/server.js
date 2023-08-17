@@ -15,11 +15,11 @@ const io = socketIo(chatServer,{cors:{
   credentials: true,
 }});
 
-const CHATPORT =process.env.PORT || 3001;//should this be the same port as below?
+const CHATPORT =process.env.PORT || 3001;
 
-app.get('/', (req, res) => {
-  res.send('Server is running.');
-});
+// app.get('/', (req, res) => {
+//   res.send('Server is running.');
+// });
 
 io.on('connection', (socket) => {
   console.log('A user connected');
@@ -40,7 +40,7 @@ io.on('connection', (socket) => {
 const { typeDefs, resolvers } = require('./schemas');
 const db = require('./config/connection');
 
-const PORT = process.env.PORT || 3002;
+// const PORT = process.env.PORT || 3001;
 
 const server = new ApolloServer({
   typeDefs,
