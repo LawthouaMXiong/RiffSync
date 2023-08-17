@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import fakeAccounts from '../components/fakeAccounts';
-import '../components/resources/home.css';
+import '../components/home.css';
 
 export default function Home() {
   const [signupEmail, setSignupEmail] = useState('');
