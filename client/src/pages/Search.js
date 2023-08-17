@@ -1,34 +1,46 @@
 import React, { useState } from 'react';
 import '../components/search.css';
 import { instruments } from '../components/instrument';
+import fakeAccounts from '../components/fakeAccounts';
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState('');
-const [selectedInstrument, setSelectedInstrument] = useState(null);
-const [selectedSubcategory, setSelectedSubcategory] = useState(null);
-const [selectedGenre, setSelectedGenre] = useState(null);
-const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner'); // Added this line
+  const [suggestions, setSuggestions] = useState([]);
+  const [selectedInstrument, setSelectedInstrument] = useState(null);
+  const [selectedSubcategory, setSelectedSubcategory] = useState(null);
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner');
+  const [matchedAccounts, setMatchedAccounts] = useState([]);
 
 
   const handleInputChange = (event) => {
     const value = event.target.value;
     setSearchTerm(value);
-    if (value === '') {
+  
+    if (value !== '') {
+      const matches = instruments
+        .filter((inst) => inst.name.toLowerCase().startsWith(value.toLowerCase()))
+        .map((inst) => inst.name);
+  
+      setSuggestions(matches);
+    } else {
+      setSuggestions([]);
       setSelectedInstrument(null);
       setSelectedSubcategory(null);
     }
   };
 
+
   const handleSearchSubmit = () => {
     if (searchTerm) {
-      const instrument = instruments.find((instrument) =>
-        instrument.name.toLowerCase().includes(searchTerm.toLowerCase())
-      );
+      const instrument = instruments.find((instrument) => instrument.name.toLowerCase() === searchTerm.toLowerCase());
       setSelectedInstrument(instrument);
-      setSelectedSubcategory(null); 
+      setSelectedSubcategory(null);
       setSelectedGenre(null);
     }
   };
+
+
 
   const handleKeyPress = (event) => {
     if (event.key === 'Enter') {
@@ -57,17 +69,24 @@ const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner'); // Add
       selectedGenre,
       selectedSkillLevel,
     };
-
-    // Perform some action with selectedData
-    console.log(selectedData);
+  
+    const matches = fakeAccounts.filter((account) => {
+      return account.instrument === selectedInstrument.name &&
+        (!selectedSubcategory || account.subcategory === selectedSubcategory) &&
+        (!selectedGenre || account.genre === selectedGenre) &&
+        (!selectedSkillLevel || account.skillLevel === selectedSkillLevel);
+    });
+  
+    setMatchedAccounts(matches);
   };
+
 
   const genresForSelectedInstrument =
     selectedInstrument && selectedSubcategory && selectedInstrument.genres[selectedSubcategory]
       ? selectedInstrument.genres[selectedSubcategory]
       : []
 
-    return (
+  return (
     <div className="home">
       <h1 className="text-3xl font-bold underline">RiffSync search</h1>
       <input
@@ -78,10 +97,27 @@ const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner'); // Add
         onKeyPress={handleKeyPress}
         className="border rounded p-2 w-full"
       />
+      { suggestions.length > 0 && (
+  <div className="suggestions">
+    { suggestions.map((suggestion, index) => (
+      <div
+        key={index}
+        onClick={() => {
+          setSearchTerm(suggestion);
+          setSelectedInstrument(instruments.find((inst) => inst.name === suggestion));
+          setSuggestions([]);
+        }}
+        className="suggestion"
+      >
+        {suggestion}
+      </div>
+    ))}
+  </div>
+)}
       <button onClick={handleSearchSubmit} className="search-button">
-  Search
-</button>
-      
+        Search
+      </button>
+
       <select value={selectedSkillLevel} onChange={handleSkillLevelChange} className="border rounded p-2 select-skill-level mt-4">
         <option value="Beginner">Beginner</option>
         <option value="Intermediate">Intermediate</option>
@@ -113,7 +149,7 @@ const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner'); // Add
               <div
                 key={index}
                 className={`search-result ${selectedGenre === genre ? 'selected' : ''}`}
-                onClick={() => selectGenre(genre)} 
+                onClick={() => selectGenre(genre)}
               >
                 {genre}
               </div>
@@ -121,11 +157,26 @@ const [selectedSkillLevel, setSelectedSkillLevel] = useState('Beginner'); // Add
           </div>
         </div>
       )}
-      {selectedInstrument && (
-  <button onClick={handleSubmit} className="submit-button">
-    Submit
-  </button>
+     {selectedInstrument && (
+        <button onClick={handleSubmit} className="submit-button">
+          Submit
+        </button>
+      )}
+      {matchedAccounts.length > 0 ? (
+  <div className="matched-accounts-container">
+    {matchedAccounts.map((account, index) => (
+      <div key={index} className="matched-account">
+        <p>Name: {account.name}</p>
+        <p>Instrument: {account.instrument}</p>
+        <p>Subcategory: {account.subcategory}</p>
+        <p>Skill Level: {account.skillLevel}</p>
+      </div>
+    ))}
+  </div>
+) : (
+  <p>No users found.</p>
 )}
     </div>
-  );
-}
+    );
+  };
+
