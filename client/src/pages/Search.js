@@ -19,15 +19,16 @@ export default function Search() {
     setSearchTerm(value);
     setSearchAttempted(false);
 
-    if (value !== '') {
+    if (value === '') {
+      setMatchedAccounts([]);
+      setSuggestions([]);
+      setSelectedInstrument(null);
+      setSelectedSubcategory(null);
+    } else {
       const matches = instruments
         .filter((inst) => inst.name.toLowerCase().startsWith(value.toLowerCase()))
         .map((inst) => inst.name);
       setSuggestions(matches);
-    } else {
-      setSuggestions([]);
-      setSelectedInstrument(null);
-      setSelectedSubcategory(null);
     }
   };
 
@@ -66,22 +67,20 @@ export default function Search() {
   };
 
   const handleSubmit = () => {
-    const selectedData = {
-      searchTerm,
-      selectedInstrument,
-      selectedSubcategory,
-      selectedGenre,
-      selectedSkillLevel,
-    };
-
+    if (!selectedInstrument) {
+      setSearchAttempted(true);
+      return;
+    }
+  
     const matches = fakeAccounts.filter((account) => {
       return account.instrument === selectedInstrument.name &&
         (!selectedSubcategory || account.subcategory === selectedSubcategory) &&
         (!selectedGenre || account.genre === selectedGenre) &&
         (!selectedSkillLevel || account.skillLevel === selectedSkillLevel);
     });
-
+  
     setMatchedAccounts(matches);
+    setSearchAttempted(true);
   };
 
 
